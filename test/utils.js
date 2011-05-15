@@ -1,6 +1,6 @@
 var vows = require('vows'),
 		assert = require('assert'),
-		utils = require('../utils.js');
+		utils = require('../lib/utils.js');
 
 vows.describe('utils.isLocal check whether a uri is local').addBatch({
 		'when check ordinary http uri': {
