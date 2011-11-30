@@ -33,7 +33,8 @@
         document.getElementById('iframe').onload = resizeFrame;
         window.onresize = resizeFrame;
 
-				var socket = new io.Socket(null, {port: 8080,reconnect: true,rememberTransport: true});
+                var port = document.getElementById('port').textContent;
+				var socket = new io.Socket(null, {port: port,reconnect: true,rememberTransport: true});
 				socket.on('message', function (message) {
 					refreshPage();
 				});
