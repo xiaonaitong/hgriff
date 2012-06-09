@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>watching</title>
-	<script src="/socket.io/socket.io.js" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>watching</title>
+    <script src="/socket.io/socket.io.js" />
 </head>
 <style type="text/css">
     html,body,iframe {
@@ -26,24 +26,23 @@
            document.getElementById('iframe').style.display = 'block';
         };
 
-				function refreshPage() {
-					var src = document.getElementById('iframe').src;
-					document.getElementById('iframe').src = src;
-				}
+        function refreshPage() {
+        var src = document.getElementById('iframe').src;
+        document.getElementById('iframe').src = src;
+        }
         document.getElementById('iframe').onload = resizeFrame;
         window.onresize = resizeFrame;
 
-                var port = document.getElementById('port').textContent;
-				var socket = new io.Socket(null, {port: port,reconnect: true,rememberTransport: true});
-				socket.on('message', function (message) {
-					refreshPage();
-				});
-				socket.on('reconnect', function () {
-					refreshPage();
-					socket.send(window.location.pathname);
-				});
-				socket.connect();
-				socket.send(window.location.pathname);
+        var port = document.getElementById('port').textContent;
+        var socket = io.connect("http://localhost:" + port);
+        socket.on('message', function (message) {
+          refreshPage();
+        });
+        socket.on('reconnect', function () {
+          refreshPage();
+          socket.send(window.location.pathname);
+        });
+        socket.send(window.location.pathname);
     </script>
 </body>
 </html>
