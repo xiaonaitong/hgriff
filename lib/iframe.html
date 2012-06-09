@@ -40,9 +40,9 @@
         });
         socket.on('reconnect', function () {
           refreshPage();
-          socket.send(window.location.pathname);
+          socket.emit("message", window.location.pathname);
         });
-        socket.send(window.location.pathname);
+        socket.emit("message", window.location.pathname);
     </script>
 </body>
 </html>
